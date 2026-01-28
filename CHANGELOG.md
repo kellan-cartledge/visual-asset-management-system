@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.1] (2026-01-30)
+
+### Bug Fixes
+
+-   Fixed CDK deployment error with storage resources asset indexer queue names when deploying to GovCloud environments
+-   Fixed CDK deployment error with Cloudfront KMS principal persmisions (should not be added) when deploying to non-cloudFront for web configurations or GovCloud environment
+-   Fixed CDK deployment error with deploying metadata schema data when using KMS key (KMS key permissions were not being applied correctly to CDK custom resource role)
+-   Fixed CDK deployment error with IsaacSim use-case pipeline which tried to set IAM permissions on invalid resource types
+-   **Web** Fixed bug on metadata schema management where if navigating back to the same metadata schema page through the navigation bar (while on it), it won't show as blank or empty page anymore
+-   **Web** Asset FileManager will now remember expanded folders in file tree while detailed data is still loading in for large file trees. Previously it would collapse folders every time a new page worth of data was loaded in.
+-   **Web** Asset FileManager will now open all parent folders to a selected file in the tree when opened directly from an external page/source (ie. from asset/file search)
+
+### Chores
+
+-   Fix readme instructions for v2.3 to v2.4 migration scripts to remove steps that shouldn't have been added
+
 ## [2.4.0] (2026-01-16)
 
 ### Major Change Summary:
@@ -56,7 +72,7 @@ OpenSearch indexes have changed their schema for "MD\_" and "AB\_" fields (now f
 -   Asset versions will now save all and view asset and file metadata and atrributes as part of versioning an asset; previously versioned asset will not have any metadata as part of the version
     -   There is now an option on reverting to a asset version to update and revert to the saved file and asset metadata (and file attributes)
     -   Asset versions can now be created, even if no files are in the asset
--   New addon feature and configuration which allows pushing database, asset, and file changes to a Garnet Framework solution (Knowledge graph) deployed in the same AWS account. Visit [garnet-framework.dev](https://garnet-framework.dev/) for more information on the garnet framework solution. See the [ConfigurationGuide.md](./documentation/ConfigurationGuide.md) on how to turn this addon feature on.
+-   New addon feature and configuration which allows pushing database, asset, and file changes to a Garnet Framework solution (Knowledge graphs) deployed in the same AWS account. Visit [garnet-framework.dev](https://garnet-framework.dev/) for more information on the garnet framework solution. See the [ConfigurationGuide.md](./documentation/ConfigurationGuide.md) on how to turn this addon feature on.
 -   **Web** Added Veerum 3D Model licensed viewer to the viewer plugin system for `e57, las, laz, ply, and json (3D Tile)` files. Visit [veerum.com](https://www.veerum.com/) for license purchasing, then enable this viewer in `web\src\visualizerPlugin\config\viewerConfig.json`.
     -   Note: This viewer requires the Potree Auto-Processing pipeline to be enabled for PointCloud file loading.
 -   Added new Amazon EKS pipeline option for RapidPipeline use-case pipeline (complementing existing Amazon ECS). This provides a pattern example for other use-case pipelines implementing Kubernetes (EKS) versus Elastic Container Service (ECS).
